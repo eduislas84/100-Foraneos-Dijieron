@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+body {
+  font-family: 'Bangers', cursive;
+  background: linear-gradient(135deg, #ffcc00, #ff0000);
+  background-attachment: fixed;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 4rem;
+  color: #000;
+  text-shadow: 3px 3px 0 #ff0, 6px 6px 0 #f00;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+#buscador {
+  margin: 1rem 0;
+}
+
+#buscador input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 250px;
+  border-radius: 8px;
+  border: none;
+}
+
+#buscador button {
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  background-color: #000;
+  color: #ff0;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  text-transform: uppercase;
+  font-weight: bold;
+  box-shadow: 2px 2px 0 #f00;
+}
+
+.tablero {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  justify-content: center;
+  max-width: 700px;
+  margin: 30px auto;
+}
+
+.respuesta {
+  background-color: #222;
+  padding: 1rem;
+  border-radius: 15px;
+  font-size: 1.5rem;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border: 4px solid #ffd700;
+  color: #fff;
+  box-shadow: inset 0 0 15px #ff0, 0 0 10px #000;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.respuesta.mostrada {
+  background-color: #28a745;
+  color: #fff;
+  border-color: #0f0;
+  box-shadow: 0 0 15px #0f0, inset 0 0 10px #fff;
+}
+
+#felicidades {
+  margin-top: 20px;
+}
+
+#felicidades button {
+  background-color: #0044cc;
+  color: white;
+  padding: 0.7rem 2rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 2px 2px 0 #222;
+}
+
+#equipos {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+#equipos h3 {
+  font-size: 2rem;
+  text-shadow: 1px 1px 0 #000;
+}
+
+#equipos p {
+  font-size: 1.5rem;
+}
+
+.errores {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.error-box {
+  width: 80px;
+  height: 80px;
+  border: 4px solid #f00;
+  border-radius: 5px;
+  color: #f00;
+  font-weight: bold;
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+}
+
+.robo-msg {
+  background: #ff5722;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 15px;
+  font-weight: bold;
+  margin: 1rem auto;
+  max-width: 500px;
+  box-shadow: 0 0 10px #000;
+  font-size: 1.2rem;
+}
+
+#pregunta {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 2rem auto;
+  color: #fff;
+  text-shadow: 2px 2px #000;
+  max-width: 800px;
+  line-height: 1.3;
+}
+
