@@ -7,34 +7,44 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>100 Foraneos Dijeron</h1>
+  <div id="contenedor">
+    
+    <div id="cabecera">    
+      <div class="titulo-centro">
+        <h1>100 Foraneos Dijeron</h1>
+      </div>
+    </div>   
 
-  <div id="buscador">
-    <input type="text" id="respuestaInput" placeholder="Escribe una respuesta..." />
-    <button onclick="verificarRespuesta()">Responder</button>
-  </div>
+    <div id="buscador">
+      <input type="text" id="respuestaInput" placeholder="Escribe una respuesta..." />
+      <button onclick="verificarRespuesta()">Responder</button>
+    </div>
 
-  <div id="roboMensaje" class="robo-msg" style="display: none;"></div>
+    <div id="cronometro">Tiempo: <span id="tiempo">30</span>s</div>
 
-  <div id="equipos">
-    <div>
+    <div id="roboMensaje" class="robo-msg" style="display: none;"></div>
+      </div>
+    </div>
+
+    <div class="equipo" id="equipoA">
       <h3>Equipo A</h3>
       <p>Puntaje: <span id="puntajeA">0</span></p>
       <div id="erroresA" class="errores"></div>
     </div>
-    <div>
+
+    <div class="equipo" id="equipoB">
       <h3>Equipo B</h3>
       <p>Puntaje: <span id="puntajeB">0</span></p>
       <div id="erroresB" class="errores"></div>
     </div>
-  </div>
+    
+    <div id="pregunta"></div>
+    <div id="tablero" class="tablero"></div>
 
-  <div id="pregunta"></div>
-  <div id="tablero" class="tablero"></div>
-
-  <div id="felicidades" style="display: none;">
-    <h2>¡Felicidades, encontraron todas las respuestas!</h2>
-    <button onclick="siguientePregunta()">Siguiente Pregunta</button>
+    <div id="felicidades" style="display: none;">
+      <h2>¡Felicidades, encontraron todas las respuestas!</h2>
+      <button onclick="siguientePregunta()">Siguiente Pregunta</button>
+    </div>
   </div>
 
   <audio id="sonidoRonda" src="ronda.mp3"></audio>

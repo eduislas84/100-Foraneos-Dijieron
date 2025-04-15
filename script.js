@@ -126,7 +126,7 @@ const preguntas = [
     let enRobo = false;
     let equipoEnRobo = "";
     let puntosRonda = 0;
-    let equipoGanadorRonda = "A"; // empieza equipo A por defecto
+    let equipoGanadorRonda = "A";
     
     const preguntaElemento = document.getElementById("pregunta");
     const tablero = document.getElementById("tablero");
@@ -136,6 +136,58 @@ const preguntas = [
     const erroresAEl = document.getElementById("erroresA");
     const erroresBEl = document.getElementById("erroresB");
     const felicidades = document.getElementById("felicidades");
+    
+    let tiempoRestante = 30;
+    let intervalo;
+    
+    function iniciarCronometro() {
+      clearInterval(intervalo);
+      tiempoRestante = 30;
+      document.getElementById("tiempo").textContent = tiempoRestante;
+    
+      intervalo = setInterval(() => {
+        tiempoRestante--;
+        document.getElementById("tiempo").textContent = tiempoRestante;
+    
+        if (tiempoRestante <= 0) {
+          clearInterval(intervalo);
+          sonidoError.play();
+        
+          if (!enRobo) {
+            if (turnoA) {
+              erroresA++;
+              if (erroresA === 2) mostrarRoboMensaje("B");
+              if (erroresA >= 3) {
+                activarRobo("B");
+              }
+            } else {
+              erroresB++;
+              if (erroresB === 2) mostrarRoboMensaje("A");
+              if (erroresB >= 3) {
+                activarRobo("A");
+              }
+            }
+            actualizarErrores();
+            respuestaInput.value = "";
+        
+            // 🔁 Reiniciar el cronómetro automáticamente después de marcar X
+            iniciarCronometro();
+          } else {
+            // Robo fallido por tiempo
+            if (equipoEnRobo === "A") {
+              puntajeB += puntosRonda;
+              equipoGanadorRonda = "B";
+            } else {
+              puntajeA += puntosRonda;
+              equipoGanadorRonda = "A";
+            }
+            puntajeAEl.textContent = puntajeA;
+            puntajeBEl.textContent = puntajeB;
+            terminarRonda();
+          }
+        }        
+      }, 1000);
+    }
     
     function cargarPregunta() {
       const actual = preguntas[indicePregunta];
@@ -159,6 +211,8 @@ const preguntas = [
         div.textContent = "?";
         tablero.appendChild(div);
       });
+    
+      iniciarCronometro();
     }
     
     function verificarRespuesta() {
@@ -173,7 +227,7 @@ const preguntas = [
           const cuadros = document.querySelectorAll(".respuesta");
           cuadros[i].classList.add("mostrada");
           cuadros[i].textContent = `${r.texto} - ${r.puntos}`;
-          sonidoRespuesta.play(); // ✅ Sonido de respuesta correcta
+          sonidoRespuesta.play();
           puntosRonda += r.puntos;
     
           if (!enRobo) {
@@ -185,7 +239,6 @@ const preguntas = [
               puntajeBEl.textContent = puntajeB;
             }
           } else {
-            // Robo exitoso
             if ((turnoA && equipoEnRobo === "A") || (!turnoA && equipoEnRobo === "B")) {
               if (equipoEnRobo === "A") {
                 puntajeB -= puntosRonda;
@@ -210,7 +263,7 @@ const preguntas = [
       });
     
       if (!encontrado) {
-        sonidoError.play(); // ❌ Sonido de error
+        sonidoError.play();
         if (!enRobo) {
           if (turnoA) {
             erroresA++;
@@ -222,7 +275,6 @@ const preguntas = [
             if (erroresB >= 3) activarRobo("A");
           }
         } else {
-          // Robo fallido
           if (equipoEnRobo === "A") {
             puntajeB += puntosRonda;
             equipoGanadorRonda = "B";
@@ -239,11 +291,13 @@ const preguntas = [
     
       actualizarErrores();
       respuestaInput.value = "";
+      clearInterval(intervalo);
+      iniciarCronometro();
     
       if (respuestasMostradas.length === actual.respuestas.length) {
         felicidades.style.display = "block";
         equipoGanadorRonda = turnoA ? "A" : "B";
-        sonidoRonda.play(); // 🎉 Sonido de ronda finalizada
+        sonidoRonda.play();
       }
     }
     
@@ -261,11 +315,12 @@ const preguntas = [
     }
     
     function terminarRonda() {
+      clearInterval(intervalo);
       felicidades.style.display = "block";
       enRobo = false;
       equipoEnRobo = "";
       puntosRonda = 0;
-      sonidoRonda.play(); // ✅ También se puede reproducir aquí
+      sonidoRonda.play();
     }
     
     function actualizarErrores() {
@@ -291,4 +346,3 @@ const preguntas = [
     }
     
     cargarPregunta();
-    

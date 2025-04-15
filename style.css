@@ -19,7 +19,10 @@ h1 {
 }
 
 #buscador {
-  margin: 1rem 0;
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
 #buscador input {
@@ -45,7 +48,8 @@ h1 {
 
 .tablero {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   gap: 15px;
   justify-content: center;
   max-width: 700px;
@@ -111,9 +115,9 @@ h1 {
 
 .errores {
   display: flex;
-  gap: 5px;
   justify-content: center;
-  margin-top: 0.5rem;
+  gap: 5px;
+  margin-top: 5px;
 }
 
 .error-box {
@@ -148,7 +152,67 @@ h1 {
   margin: 2rem auto;
   color: #fff;
   text-shadow: 2px 2px #000;
-  max-width: 800px;
+  max-width: 500px;
   line-height: 1.3;
 }
 
+#cronometro {
+  background: #000;
+  border: 4px solid #fff;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 10px 20px;
+  box-shadow: 0 0 15px #fff;
+  color: #ff0;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 1rem;
+}
+
+#cabecera {
+  text-align: center;
+}
+
+.titulo-centro h1 {
+  font-size: 2.5em;
+  margin: 10px 0;
+  color: white;
+  text-shadow: 2px 2px 5px black;
+}
+
+.titulo-centro h1 {
+  margin: 0;
+}
+
+.equipo {
+  position: absolute;
+  top: 140px; 
+  width: 150px;
+  text-align: center;
+  color: white;
+}
+
+#respuestaInput {
+  padding: 10px;
+  font-size: 1em;
+}
+
+#equipoA {
+  left: 70px;
+}
+
+#equipoB {
+  right: 70px;
+}
+
+.errores div {
+  width: 80px;
+  height: 50px;
+  background: black;
+  border: 2px solid red;
+  font-size: 1.5em;
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
